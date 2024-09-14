@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كيمياء أفضل مع مروة🌚</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #e0f7fa;
+            color: #333;
+        }
+        h1 {
+            color: #ff6347;
+            margin-top: 20px;
+        }
+        .lab-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .beaker {
+            width: 200px;
+            height: 300px;
+            border: 5px solid #333;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            background-color: #d1f1ff;
+        }
+        .water {
+            width: 100%;
+            height: 70%;
+            background-color: #87ceeb;
+            position: absolute;
+            bottom: 0;
+            border-radius: 0 0 50px 50px;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff8567;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+        #nextPage, #illustrations {
+            display: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .salt, .sugar {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .salt {
+            background-color: #fff;
+        }
+        .sugar {
+            background-color: #fdd835;
+        }
+    </style>
+</head>
+<body>
+
+<h1>كيمياء أفضل مع مروة 🌚</h1>
+
+<div class="lab-container">
+    <div class="beaker" id="beaker">
+        <div class="water" id="water"></div>
+    </div>
+
+    <div class="controls">
+        <button onclick="addSalt()">أضف ملح 🧂</button>
+        <button onclick="addSugar()">أضف سكر 🍬</button>
+        <button onclick="heatWater()">سخّن الماء 🔥</button>
+        <button onclick="stir()">حرك 🌀</button>
+        <button onclick="resetExperiment()">إعادة تعيين ⏪</button>
+        <button onclick="showNextPage()">عرض النتائج ➡️</button>
+        <button onclick="showIllustrations()">عرض الرسم التوضيحي 🧑‍🔬</button>
+    </div>
+</div>
+
+<h2>التفاعل</h2>
+<p id="reactionText">تفاعل الملح أو السكر في الماء يعتمد على قطبية الجزيئات 🧪.</p>
+
+<!-- قسم عرض النتائج -->
+<div class="next-page" id="nextPage">
+    <h2>نتائج التفاعل</h2>
+    <p>لقد أضفت الملح والسكر وقمت بتحريك الماء..</p>
+    <p>هل تعلم أن العوامل التي تؤثر على عملية التذويب تشمل:</p>
+    <ul>
+        <li>التحريك 🌀: التحريك يساعد على توزيع الجزيئات ويزيد من معدل الذوبان.</li>
+        <li>الحرارة 🔥: كلما زادت الحرارة، تسارعت حركة الجزيئات وذابت المواد أسرع.</li>
+        <li>المساحة السطحية: كلما كانت جزيئات المادة أصغر، زادت مساحة السطح للتفاعل مع الماء.</li>
+    </ul>
+    <p>باختصار: الحرارة والتحريك والسكر الناعم بيفوزوا في هذا السباق! 🏆</p>
+</div>
+
+<!-- قسم الرسم التوضيحي -->
+<div id="illustrations">
+    <h2>الرسم التوضيحي</h2>
+    <img src="imag/1.jpg" alt="رسم توضيحي 1"> 
+    <img src="imag/2.jpg" alt="رسم توضيحي 2"> 
+    <img src="imag/3.jpg" alt="رسم توضيحي 3"> 
+</div>
+
+<div class="footer">
+    <p>تعلم وامرح.. ولا تأخذ الكيمياء بجدية كبيرة 😉.</p>
+</div>
+
+<script>
+    let saltCount = 0;
+    let sugarCount = 0;
+    let heated = false;
+    let stirred = false;
+
+    function addSalt() {
+        if (saltCount < 3) {
+            let salt = document.createElement('div');
+            salt.classList.add('salt');
+            salt.style.left = (80 + saltCount * 60) + 'px';
+            salt.style.top = '55%';
+            document.getElementById('beaker').appendChild(salt);
+            saltCount++;
+            document.getElementById('reactionText').textContent = "الملح (NaCl) يقول: 'أيوه، هبدأ أتفكك.. استعدوا للأيونات!'";
+        } else {
+            alert('ما تقدرش تضيف أكثر من كده!');
+        }
+    }
+
+    function addSugar() {
+        let sugar = document.createElement('div');
+        sugar.classList.add('sugar');
+        sugar.style.left = (70 + sugarCount * 60) + 'px';
+        sugar.style.top = '60%';
+        document.getElementById('beaker').appendChild(sugar);
+        sugarCount++;
+        document.getElementById('reactionText').textContent = "السكر (C₁₂H₂₂O₁₁) يقول: 'أوه، أنا كمان هبدأ أذوب بلطف!'";
+    }
+
+    function heatWater() {
+        if (!heated) {
+            document.getElementById('water').style.backgroundColor = '#ff4500';
+            document.getElementById('reactionText').textContent = "الماء: 'أنا بسخن، الكل هيدوب بسرعة!' 💧";
+            heated = true;
+        } else {
+            alert('الماء بالفعل ساخن!');
+        }
+    }
+
+    function stir() {
+        const salts = document.querySelectorAll('.salt');
+        const sugars = document.querySelectorAll('.sugar');
+        salts.forEach((salt, index) => {
+            setTimeout(() => {
+                salt.style.opacity = '0';
+                salt.style.transform = 'translateY(50px)';
+            }, index * 500);
+        });
+        sugars.forEach((sugar, index) => {
+            setTimeout(() => {
+                sugar.style.opacity = '0';
+                sugar.style.transform = 'translateY(50px)';
+            }, index * 500);
+        });
+        document.getElementById('reactionText').textContent = "الملح والسكر: 'باي باي، نحن نذوب!' 🌀";
+        stirred = true;
+    }
+
+    function resetExperiment() {
+        const salts = document.querySelectorAll('.salt');
+        const sugars = document.querySelectorAll('.sugar');
+        salts.forEach(salt => salt.remove());
+        sugars.forEach(sugar => sugar.remove());
+        saltCount = 0;
+        sugarCount = 0;
+        heated = false;
+        stirred = false;
+        document.getElementById('reactionText').textContent = "تفاعل الملح أو السكر في الماء يعتمد على قطبية الجزيئات 🧪.";
+        document.getElementById('water').style.backgroundColor = '#87ceeb';
+    }
+
+    function showNextPage() {
+        const nextPage = document.getElementById('nextPage');
+        if (nextPage.style.display === 'block') {
+            nextPage.style.display = 'none';
+        } else {
+            nextPage.style.display = 'block';
+        }
+    }
+
+    function showIllustrations() {
+        const illustrations = document.getElementById('illustrations');
+        if (illustrations.style.display === 'block') {
+            illustrations.style.display = 'none';
+        } else {
+            illustrations.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
